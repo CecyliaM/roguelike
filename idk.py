@@ -4,6 +4,7 @@ import os
 from ui import display_board
 player_icon = " @"
 
+'''
 def board():
     board = []
     for a in range(10):
@@ -19,7 +20,7 @@ def print_board(board):
 def player_on_board(board):
     board[player_start_X][player_start_Y] = player_icon
     print_board(board)
-
+'''
 
 def moving(board):
     player_start_X = 3
@@ -28,7 +29,7 @@ def moving(board):
     display_board()
     for row in board:
         print(row)
-    for a in range(100):
+    for a in range(100): #this will be a while loop. for was just for tests
         key = key_pressed()
         if key == "w": #up
             if not board[player_start_X -1][player_start_Y] == "w":
