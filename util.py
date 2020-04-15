@@ -23,7 +23,7 @@ def key_pressed():
             ch = sys.stdin.read(1)
         finally:
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-        return ch
+s        return ch
 
 
 def clear_screen():
