@@ -11,9 +11,9 @@ def create_board(BOARD_WIDTH, BOARD_HEIGHT):
     Returns:
     list: Game board
     '''
-    board_material = ((BOARD_WIDTH)//3)*['w']+(((BOARD_WIDTH)//3)*2)*['p']
-    board_material.remove('w')
-    board_material.remove('p')
+    board_material = ((BOARD_WIDTH)//3)*['p']+(((BOARD_WIDTH)//3)*2)*['p']
+    # board_material.remove('w')
+    # board_material.remove('p')
     line = []
     board = []
     line_with_border = []
