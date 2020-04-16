@@ -14,14 +14,7 @@ $ is a key to unlock door
 #items = {"$":1, "*":1, "!":25}
 
 '''--------------------Piotrek-----------------------------------------------------------------'''
-'''
-story
-< When life gives you eggs, make an omelette > 
-Welcome, Eggbert!
-You have been teleported to this creepy dungeon.
-Your task is to collect enough eggs to make an omelette.
-Be careful! You are going to encounter chickens that will try to stop you.
-'''
+
 
 PLAYER_ICON = '@'
 PLAYER_START_X = 3
@@ -30,7 +23,18 @@ PLAYER_START_Y = 3
 BOARD_WIDTH = 30
 BOARD_HEIGHT = 20
 
-
+def story():
+    print("🍳 🍳 🍳 When life gives you eggs, make an omelette🍳 🍳 🍳 ")
+    print()
+    time.sleep(2)
+    print("🥚 Welcome, Eggbert! 🥚")
+    print()
+    print("🥚 You have been teleported to this creepy dungeon. 🥚")
+    print()
+    print("🥚 Your task is to collect enough eggs to make an omelette. 🥚")
+    print()
+    print("🥚 Be careful! You are going to encounter chickens that will try to stop you. 🥚")
+    print()
 
 def create_player():
     player = {'PLAYER_ICON' : '@', 'PLAYER_X': 10, 'PLAYER_Y' : 10}
@@ -100,6 +104,8 @@ def classes():
     print("        yms hm+ -hh.`ymo +my.hy-`ym+:mo`:hd: .yhyhy- -hd:+d+              hm+`dm/  .ym+ :mdssm--hh.`ymo /my-yh:`smysy+             :dh--hd:  odyhy. `sh- om+   +dh/  -hdsym -hd:+m+     ")
     
 def main():
+    story()
+    os.system("""bash -c 'read -s -n 1 -p "Press any key to continue..."'""")
     util.clear_screen()
     splash()
     time.sleep(3)
