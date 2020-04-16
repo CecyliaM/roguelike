@@ -2,6 +2,8 @@ import util
 import engine
 import ui
 import os
+import time
+
 '''--------------------Piotrek-----------------------------------------------------------------'''
 import random 
 inventory = {"Health": 100, "Power": 25, "Weapon": 0, "Keys": 0}
@@ -40,7 +42,67 @@ def random_position(board, BOARD_WIDTH, BOARD_HEIGHT):
 
 random_position(engine.create_board(BOARD_WIDTH, BOARD_HEIGHT), 30,20)
 
+def get_input():
+    player_class = input("Choose your class:\n")
+    return player_class
+
+def splash():
+    print()                      
+    print("888888 e   e e  eeee e   e  eeee eeeee     8     eeeee eeeee  eeeee")
+    print("8e     8   8 8  8  8 8   8  8    8   8     8e    8  88 8   8  8   8")
+    print("88     8eee8 8e 8e   8eee8e 8eee 8e  8     88    8   8 8eee8e 8e  8")
+    print("88   e 88  8 88 88   88   8 88   88  8     88    8   8 88   8 88  8")
+    print("88eee8 88  8 88 88e8 88   8 88ee 88  8     88eee 8eee8 88   8 88ee8")
+    print()
+        
+def classes():
+    print("     .MMMMMNNNNMMMMMNNNNmmmmmNMMMNNsNNMMMNMMNmNNMNNNMMMNm          -///:::::::://::-//::++o+++/:..-....---::::::::::::.           :yhso+osyssssoo/ydddddhhddddddddddhsssshssddddhyy/`            ")
+    print("     .MMMNNNNNNMMMMNMNNNNNmdo/ydNNNdmNMMNMNddmNNNNNNNMNNm          -+/////::///////oo/ymmmmmdhyys/-::------::///////::.           -ydhysshhhhyhhddNNMNmmNNNMMMMMMMMNNdhysmNhddNNmho.             ")
+    print("     .NNNNNmmNNMMNNNNNNNNNNmdhdmNNMMNNNNmhyhhmmdysddNNNNd          -/::/:::::::///oo+hdMMMMMMMMmhy/-::-----.-:::::::::.            .ody+oyyyddmNyNNMNNNNMMNNNNNNNNMNNmdsodNNdyshmho:`            ")
+    print("     `NNNNmmmNNMMNNNNmmmmdmhddmmNNNNNNNmmNmmmmmmdyshhmmmd          .:::::::--/+//syomhNMMMMMMMMMNdho--:-----..-----:::.             -yo/+yhmNNNddNNNmmmNNNNmmmmmmNNNNNms+hmNNmhsyhyo-            ")
+    print("     `mmmmmmmNNNMNNNmmdmdNmdddddddmmhhyyhddddhyyhddddmmmd          .:::::---+so/sdodsdMMMMMMMMMMMNdy:---.----.....----.             .oo-smNNMMMhMNNmdddmmmNmNmmmNNNNNNms/smNMNNmddhy-            ")
+    print("     `dddddddmNMNNNMNNNmmmdhhhhhyysssyysssoooo+ohmmmmddmh          .:----../yy+smssysMMMMMMNdhmNMMNhh+-:-.----.`....--.           ``:ydsyMMMMMmmNNmdhhhdmmmddddmNNNNNNms/odmMMMNmdmh:            ")
+    print("     `ddddhhhhmNNmmNmNmdddhyyyyso++ooooo++++++/smNNNddddh          .---....hhshNmmmoNMNmmdsshhhydmNNNN/:------.``....-.          `.:sdmhdNNNNNhMNNmmmdddhys/oossyhmmNmNs/+hmNMMNNmmm:            ")
+    print("     `hhhhhysydNNmNNNmmdhysso++/////:::--:/+++/odNNdhhhdy          `--....+dyshmyhdhMNyo+oyy/.:syydmNNmdo------.```...`          -:odNNyNmmNNdmNNNNmdy+:.:-`.---:oyyymNy++sdNMNMNNdh:            ")
+    print("     `yyyyysoohmNNNNmNmmhyso/::::----..-:/osso++dNNsyyhhy          ``....:mysyshdmhNMNsoyhhso/oshyydNNNmh/-.---.```````          +sydmmNmmNNNhMNNNNmhyo:...-+hhyhhsoodNd+/odmNMNMMNh:            ")
+    print("     `sssssoo+sNNNNNNmmmhyso+/:-.```..-::/osyhy+yNmooyyyy          `...``ddsyysyNNmNNMmmdddddhhdddddmmNNdso...--..`````          /yhdmNNmMNNdmNNMNNmNNmdyoshdmNNNNNmmmmmo/+hmNMNmmmd-            ")
+    print("     `sssso++oymNNNNNmmmho/:--..``.--::--/shdmmhsNy:osyys          ```..-myshsd+mmmNNNmdsoosyoo++ooyhmNNNmho.----..````          -+yhdhNNMMMhMMNdhdmNNmmh/+hmNNNmNNNNmmNh++sdmMMmddm:            ")
+    print("     `soooo/o/ohNNmmdyo+ohdhs+-```.```-+yhs:--:+sNs-/osss          ``...odyyhsddmNmmNMmmmho///++:oyhdmmmmNNs:----.....`          +ddhdhNNMMmmMMdhddhmmdm/ `ohmNNmmmmmdmNmo+ohmMMNyhm/             ")
+    print("     `ooo++:s/hmNNmds/o+yhdoo/--:.``.+yydmd:/-.-sms./+oso          `..--mdyhydddmdmNMmhhhdhdhs/ssshysyydhdNdyo-.--....`          +hdhddNNMMhMNNNmmdddddo` :sssddhhys+/oNNhooydNMMdyh:            ")
+    print("     `++++/:/ymhNNNddho////:/sshdhoo+oy++/+:/+++sdy://ooo          `.-:smhydho-mNdmNmy/:/shdmsoyyso/:/sdmmmNhsy-...`.-.          oNmmmhNNMmmMMMNNmdhyso- `-ohhy+::/+++smmNdmmmmNMNyy:            ")
+    print("     `/////:-/ooNNNNmmy/-.-:/sdmhyssosy:...-///+yy:+:/+oo          .-::hdyyyddhdNNNh/-.--:odd:.osso+++osddmMmds+:..``-.          +hmNNdhNMhMMNMNmdh+/++-..-++oy+-.//+sdmmNNdosddmNdy:            ")
+    print("     `::::::-..:NMNmdhy+::/++shyydyo/oys+/:---:+y-.:://o+          ./::mhyyydddmNNmy/-.``.+hs:``o+//++oyhhmMMNdyyy:.`..          +dNNNMmmdmNMmdNdhs++ohhhhmmdh----:/shmNmNmNdsymmNmy:            ")
+    print("     `:::::--.``NMmhyssso+ooso+hmNyo/+/:+ss+---:s`.-::/++          ./:sdhyyo/mdNmNmmo:.``:hys.` -so///+syhmoNMMNNsy:`.`          omddddmhodmsoMNmdyo/./dmdmmNm- `.:sdmNNmNmy+oydmmNm/            ")
+    print("     `////::-...NNNhssys+/::::yshh+:+o:`-///:../s..--:/o+          ./:dyyhmmdmdMMMNmms:-/yhddo-.-sso++oyhdMMMMMMNmhs+.`          /hddmy//oyhsyNMNmdy:`./dmmmmy:/oosdmNNNmNmddosymmNd/            ")
+    print("     `/::/::-...NNNmysyo+/-.:yo:o:``.-/:.----..:o..-::/++          .:oyshdmNmmNMMMMNNsosydmmy:/--/shhyyhdNMMMMMMMMNdys`          -:ohdmh/hdy//oNNddy+sssydmNmhsymddmNNNNmmNdhmyydddh:            ")
+    print("     `+/::::-...mNNdhshys++shhhy+-..:+++/.`.:../:..::/+oo          -/hsyd-sMdMMMMMMNNmmNddds:-..-/ymNmdmNMMMMMMMMMMNdy.          +ho+oyydNNmmmdhdddhhyo++shhysyy+ohmNNNhsdmNdmdyh:-:.             ")
+    print("     `+++//+sh+:dNNdyyhyso+/:::::`-``...`.`.:-:s-.-hhoooo          :ddyhdmNNmNmMMMMMNNNh++ss++/-.`.omNNNNMMMMMMMMMMMNm+          :hNdssshhmdo+ymNNNNmmmmmNNNNmmddsyosysssddNddhhh+.`             ")
+    print("     `+++oodMMMmNNNmhhdyo:.`:ossoo+ooos+-`.-/+yhdhyNMhmho          /ddhddNmhmNdmMMMMNNNNdy+:-:-` ``+mNNNNMMNdmNMMMMMMMo          -:ohdho:+mmNNMMMMMNNdy/+//ss+/yhdmmddmmNNmmmddohdo+.            ")
+    print("     `+++h/MNMNNNNmdmddyo+-:/o+++oo+/-.---:++o+sdNNMMhmds          /yhdy:mymNNddNMMNNNNMMmhyoo++:/+ymNddmNdsosymNNNMMMo          +y/-:/odNNNNNNMMMMMNNddhyymddmNNNMNhdNNNNNNNmmhyo++.             ")
+    print("     `+/yy:NmNNdmdysoyhhso///:-:+oo/:...:+o+:-/ydNNMmhmy/          /yyddmNhmNNdddMMNNNNNNMNNdhoddmddNmddhsosssyyssdNMMo          .+sho:omNmmNNNMMMMMMNNNmmNNNNNNNMNdyoydmmNmhs+++:.``            ")
+    print("     `yyoyooNMmdyhs+//oyyssyysyyo:::::-/oo-.-+ydmNMMyNN+s          /yyhmmdmNdmmmdNMMNNNmmmmmh:.:hhhhmdyoossyso+//ohhdd:          ...:+NNNNNNdNNMMMMMMMNmNNmNNMMMNmm+//hmmdhss+.````-.            ")
+    print("     `sysoy+sNyyhyys+/+sysooyo+/.--...-/:--+sydmmNMhmMhyy          +mhhdmNMMMmmmmmNNMMNmddds-`:`-syhmyssssso+oshddo+hs-          omddNMNNNNNNhmMMMMMMMNhohmNMMMNNmh/odNmyosyyyso+oyh-            ")
+    print("     `yyss+y+yNNhyyyssoosss+:-::-....--:+ooydMNMMNhmNhddh          +mdddmNNNNNNNNmmdmNMNNh+..oh-`:dhmhyyyysyhdhsdys/-.`          +mMMNNMNNMMMMdmMMMmNNNmmmmNNmmdhhddNNNNhsyhddmmmdhs.            ")
+    print("     `ysooo+yysddmsssoooyyssoo/+//://+osohmMNNNNmdNNdmmmh          +mmmNNNNNNNNNNNNmmNNd:...yhds. -dmdhydm+odshhhs:-.-.          sMNMMhdmmmNMMMmdMMymNNmdddmdhhdmMMMNNNNNmmmmddhys+:`            ")
+    print("     `ohysoossdh+shdoyosyoooyyohosyhsoymNNmNmmhhmNmdmmmmd          +NNNNNNNNmdddmmmmNNy-..-hmmNm/` -mmysdddmmNmho/----.          sNNNMNhyhhyhhmMNhMNNmhyhhdmNMMMMMMMNmNNNNmmho/:--..`            ")
+    print("     `+ossyyssydmyy/myysh/sdomhmdmNNhhNNyNdmmNsNmmmmmmdmd          +NNNNNmmmmmdddhhdds:-.:dy++os/`` :NNNNNNmhyso+/:-::.          sNNNNNNNmmdmmsmNNydddmNMMNNNMMMMMMMMNNmdddmdo::/os+`            ")
+    print("                                                                       .///////////:////-.```.````       -///::-----......`          -//////++++/////:/-/++++///+++++++++///::://///:-.`         ")
+    print()
+    print("      :hy. ` .yy-  yh:   /hysy: `shsys` :yy: `+yyhs. -yhsyo             /hs. ` -yy..sh+ -hsshh`   yh:   :hysy/ `ohssy/             :hy--yh: +hs.-ys.`sho -ys.-hshysh`-yhsys -yhsyo`             ") 
+    print("       hN sMs m+  shyN`  `Ms-mh  oM-/M/  dd  yN`  hN  hN.sM.             dd yMo`N:  oM  .:`ym-   odsN`   My.dd  /M- .Mo             md::hN  `M+  ds  +mmh`yo `: my :  hm-/:  yN.sM.              ")
+    print("       -M+NoM+N` :MysMh  `MyhN.  oM+Nh   dd  hm`  yN  hN+Mo              :M+NsN+m   oM   :Ny`-` -MysMh   MhyM-  /M- .Mo             md::dN  `Mo  ms  +d`hmdo    my    hN//-  yN+Mo               ")
+    print("        yms hm+ -hh.`ymo +my.hy-`ym+:mo`:hd: .yhyhy- -hd:+d+              hm+`dm/  .ym+ :mdssm--hh.`ymo /my-yh:`smysy+             :dh--hd:  odyhy. `sh- om+   +dh/  -hdsym -hd:+m+     ")
+    
+    
 def main():
+    util.clear_screen()
+    splash()
+    time.sleep(3)
+    util.clear_screen()
+    # classes()
+    menu = engine.menu_init()
+    ui.display_menu(menu)
+    player_class = get_input()
     player = create_player()
     board = engine.create_board(BOARD_WIDTH, BOARD_HEIGHT)
 

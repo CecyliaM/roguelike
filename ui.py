@@ -16,3 +16,9 @@ def display_board(board):
             print(color_scheme[cell], end='')
         print()
     print()
+
+def display_menu(items):
+    for i in range(len(items)):
+        print(items[i])
+    
+

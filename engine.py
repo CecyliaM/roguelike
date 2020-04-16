@@ -1,5 +1,9 @@
 import random
 
+def menu_init():
+    items = ["CLASSES:","🎅 Santa", "🧙‍♂Wizard", "🧟Zombie"]
+    return items
+
 def create_board(BOARD_WIDTH, BOARD_HEIGHT):
     '''
     Creates a new game board based on input parameters.
@@ -9,7 +13,7 @@ def create_board(BOARD_WIDTH, BOARD_HEIGHT):
     Returns:
     list: Game board
     '''
-    board_material = ((BOARD_WIDTH)//3)*['w']+(((BOARD_WIDTH)//3)*2)*['p']
+    board_material = (((BOARD_WIDTH)//10)*2)*['w']+(((BOARD_WIDTH)//10)*8)*['p']
     board_material.remove('w')
     board_material.remove('p')
     line = []
