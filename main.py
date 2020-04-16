@@ -1,21 +1,27 @@
 import util
 import engine
 import ui
-import os
 import time
-
+import os
 '''--------------------Piotrek-----------------------------------------------------------------'''
 import random 
-inventory = {"Health": 100, "Power": 25, "Weapon": 0, "Keys": 0}
+inventory = {"Health": 15, "Weapon": 0, "Eggs": 0}
 '''
 $ is a key to unlock door
 * is a weapon
 ! is health upgrade by 25%
 '''
-items = {"$":1, "*":1, "!":25}
+#items = {"$":1, "*":1, "!":25}
 
 '''--------------------Piotrek-----------------------------------------------------------------'''
-
+'''
+story
+< When life gives you eggs, make an omelette > 
+Welcome, Eggbert!
+You have been teleported to this creepy dungeon.
+Your task is to collect enough eggs to make an omelette.
+Be careful! You are going to encounter chickens that will try to stop you.
+'''
 
 PLAYER_ICON = '@'
 PLAYER_START_X = 3
@@ -54,7 +60,7 @@ def splash():
     print("88   e 88  8 88 88   88   8 88   88  8     88    8   8 88   8 88  8")
     print("88eee8 88  8 88 88e8 88   8 88ee 88  8     88eee 8eee8 88   8 88ee8")
     print()
-        
+            
 def classes():
     print("     .MMMMMNNNNMMMMMNNNNmmmmmNMMMNNsNNMMMNMMNmNNMNNNMMMNm          -///:::::::://::-//::++o+++/:..-....---::::::::::::.           :yhso+osyssssoo/ydddddhhddddddddddhsssshssddddhyy/`            ")
     print("     .MMMNNNNNNMMMMNMNNNNNmdo/ydNNNdmNMMNMNddmNNNNNNNMNNm          -+/////::///////oo/ymmmmmdhyys/-::------::///////::.           -ydhysshhhhyhhddNNMNmmNNNMMMMMMMMNNdhysmNhddNNmho.             ")
@@ -93,7 +99,6 @@ def classes():
     print("       -M+NoM+N` :MysMh  `MyhN.  oM+Nh   dd  hm`  yN  hN+Mo              :M+NsN+m   oM   :Ny`-` -MysMh   MhyM-  /M- .Mo             md::dN  `Mo  ms  +d`hmdo    my    hN//-  yN+Mo               ")
     print("        yms hm+ -hh.`ymo +my.hy-`ym+:mo`:hd: .yhyhy- -hd:+d+              hm+`dm/  .ym+ :mdssm--hh.`ymo /my-yh:`smysy+             :dh--hd:  odyhy. `sh- om+   +dh/  -hdsym -hd:+m+     ")
     
-    
 def main():
     util.clear_screen()
     splash()
@@ -106,23 +111,23 @@ def main():
     player = create_player()
     board = engine.create_board(BOARD_WIDTH, BOARD_HEIGHT)
 
-    for i in range(3):
+    for i in range(8):
         item_place = list(random_position(board, BOARD_WIDTH, BOARD_HEIGHT))
         item_x = item_place[0]
         item_y = item_place[1]
         board[item_x][item_y] = "$"
-    for i in range(4):
+    for i in range(2):
         weapon_place = list(random_position(board, BOARD_WIDTH, BOARD_HEIGHT))
         weapon_x = weapon_place[0]
         weapon_y = weapon_place[1]
         board[weapon_x][weapon_y] = "*"
-    for i in range(4):
+    for i in range(5):
         health_place = list(random_position(board, BOARD_WIDTH, BOARD_HEIGHT))
         health_x = health_place[0]
         health_y = health_place[1]
         board[health_x][health_y] = "!"
     
-    for i in range(3):
+    for i in range(4):
         monster_place = list(random_position(board, BOARD_WIDTH, BOARD_HEIGHT))
         monster_x = monster_place[0]
         monster_y = monster_place[1]
@@ -141,6 +146,10 @@ def main():
         key = util.key_pressed()
         if key == 'q':
             is_running = False
+        if inventory['Eggs'] == 5:
+            print("🍳 You have collected enough eggs to make an omelette! 🍳")
+            print("You won!")
+            break
         if key == 'i':
             display_inventory(inventory)
             os.system("""bash -c 'read -s -n 1 -p "Press any key to continue..."'""")
@@ -160,9 +169,27 @@ def main():
             if not board[player_start_X][player_start_Y+1] == "w":
                 board[player_start_X][player_start_Y] = "p"
                 player_start_Y +=1
-        if board[monster_x+1][monster_y] == "p":
-            board[monster_x+1][monster_y] = "m"
-            board[monster_x][monster_y] = "p"
+        if board[player_start_X][player_start_Y] == "!":
+            inventory['Health'] += 1
+        if board[player_start_X][player_start_Y] == "*":
+            inventory['Weapon'] += 1
+        if board[player_start_X][player_start_Y] == "$":
+            inventory['Eggs'] += 1
+     #   if board[player_start_X][player_start_Y] == "m":
+      #      print("The chicken attacks you! You lose 1 health point")
+       #     inventory['Health'] -=1
+        #    print("Press o to attack")
+         #   time.sleep(2)
+          #  print("You defeated the chicken!")
+           # time.sleep(2)
+            #else:
+             #   print("You were defeated!")
+              #  inventory['Health'] -=3
+               # time.sleep(2)
+        if inventory['Health'] == 0:
+            print(inventory['Health'])
+            print("You die!")
+            break
         
         # if key == 'I' or 'i': #Piotrek
         #     display_inventory(inventory, board)

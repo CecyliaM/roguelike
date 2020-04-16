@@ -1,5 +1,4 @@
 import engine
-import sth
 
 def display_board(board):
     '''
@@ -17,12 +16,9 @@ def display_board(board):
         print()
     print()
 
-<<<<<<< HEAD
 def display_menu(items):
     for i in range(len(items)):
         print(items[i])
     
 
-=======
 #🍗🔥⬜⬛🔲🗡💁‍♂️🧙👲
->>>>>>> 9f844e7ca348227dba19739fa30ad265a7389fa5
