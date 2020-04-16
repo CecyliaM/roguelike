@@ -29,7 +29,11 @@ def moving(board):
     display_board()
     for row in board:
         print(row)
+<<<<<<< HEAD
     for a in range(100):
+=======
+    for a in range(100): #this will be a while loop. for was just for tests
+>>>>>>> fbb8083eba27be932bc28d3c9a6d56f83efd8bb6
         key = key_pressed()
         if key == "w": #up
             if not board[player_start_X -1][player_start_Y] == "w":
@@ -62,4 +66,8 @@ def moving(board):
         for row in board:
             print(row)
 
+<<<<<<< HEAD
 moving(create_board(30,20))
+=======
+moving(create_board(30,20))
+>>>>>>> fbb8083eba27be932bc28d3c9a6d56f83efd8bb6
