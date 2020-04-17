@@ -5,7 +5,7 @@ import time
 import os
 '''--------------------Piotrek-----------------------------------------------------------------'''
 import random 
-inventory = {"Health": 15, "Weapon": 0, "Eggs": 0}
+inventory = {"Health": 15, "Weapon": 0, "Eggs  ": 0}
 '''
 $ is a key to unlock door
 * is a weapon
@@ -146,15 +146,15 @@ def main():
     
     is_running = True
     while is_running:
-        board[player_start_X][player_start_Y] = "s"
+        board[player_start_X][player_start_Y] = player_class
         util.clear_screen()
         ui.display_board(board)
         key = util.key_pressed()
         if key == 'q':
             is_running = False
-        if inventory['Eggs'] == 5:
+        if inventory['Eggs  '] == 5:
             print("🍳 You have collected enough eggs to make an omelette! 🍳")
-            print("You won!")
+            print("You win!")
             break
         if key == 'i':
             display_inventory(inventory)
@@ -180,18 +180,45 @@ def main():
         if board[player_start_X][player_start_Y] == "*":
             inventory['Weapon'] += 1
         if board[player_start_X][player_start_Y] == "$":
-            inventory['Eggs'] += 1
-     #   if board[player_start_X][player_start_Y] == "m":
-      #      print("The chicken attacks you! You lose 1 health point")
-       #     inventory['Health'] -=1
-        #    print("Press o to attack")
-         #   time.sleep(2)
-          #  print("You defeated the chicken!")
-           # time.sleep(2)
-            #else:
-             #   print("You were defeated!")
-              #  inventory['Health'] -=3
-               # time.sleep(2)
+            inventory['Eggs  '] += 1
+        if board[player_start_X][player_start_Y] == "m":
+            chick_strength = random.randint(5,10)
+            print("You have been attacked by an angry chicken!")
+            print("Use a dagger (d) to attack or a shield (s) to protect yourself")
+            time.sleep(4)
+            while inventory['Health'] > 0:
+                util.clear_screen()
+                print("Chicken attack!")
+                display_inventory(inventory)
+                print("The chicken power:")
+                print(chick_strength)
+                strength = random.randint(1,5)
+                print("d - dagger")
+                print("s - shield")
+                time.sleep(2)
+                print("Chickens attack with the strength of:")
+                print(strength)
+
+                k = util.key_pressed()
+                if k == "d":
+                    inventory['Health'] -= strength
+                    chick_strength -=5
+                if k == "s":
+                    inventory['Health'] += 0
+                    
+                if inventory['Health'] <= 0:
+                    print("You have been defeated by the chicken")
+                    print("You lose!")
+                    time.sleep(3)
+                    break
+                if chick_strength <= 0:
+                    print("You have defeated the chicken!")
+                    print("You gain 1 egg and 3 health points")
+                    inventory['Health'] += 3
+                    inventory['Eggs  '] +=1
+                    time.sleep(3)
+                    break
+     
         if inventory['Health'] == 0:
             print(inventory['Health'])
             print("You die!")
