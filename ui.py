@@ -8,7 +8,9 @@ def display_board(board):
     '''
 
     #board = engine.create_board(30,20)
-    color_scheme = {'p': '  ', 'w': '⬛', 'g': '[|]', 's': '👲', '$': '🥚', '!': '💟', '*': '🔪', 'm': '🐥'}
+    color_scheme = {'p': '  ', 'w': '⬛', 'g': '[|]', 's': '👲', '$': '🥚', '!': '💟',
+     '*': '🔪', 'm': '🐥', '1': '🎅', '2': '🧙', '3': '🧟', 'boss': '🐣', 'door': '🚪',
+      'shield': '🛡', '%': '🗝', 1: '⚪', 2: '⚫', 3: '⚫' }
     
     for row in board:
         for cell in row: 
@@ -19,6 +21,6 @@ def display_board(board):
 def display_menu(items):
     for i in range(len(items)):
         print(items[i])
-    
 
-#🍗🔥⬜⬛🔲🗡💁‍♂️🧙👲
+
+#🍗🔥⬜⬛🔲🗡💁‍♂️🧙👲⚫
